@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive 3D Environment Project - Shefreen Kaur</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+            background-color: #1f2937;
+            color: #f9fafb;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            padding: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(52, 211, 153, 0.1) 0%, transparent 70%);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .project-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #f9fafb, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .project-subtitle {
+            font-size: 1.3rem;
+            color: #34d399;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 1.5rem;
+            background: rgba(52, 211, 153, 0.1);
+            border: 1px solid #34d399;
+            border-radius: 25px;
+            text-decoration: none;
+            color: #34d399;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: #34d399;
+            color: #1f2937;
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: #f9fafb;
+            font-weight: 600;
+            border-bottom: 3px solid #34d399;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        /* Tech Stack */
+        .tech-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .tech-category {
+            background: rgba(249, 250, 251, 0.03);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(249, 250, 251, 0.08);
+        }
+
+        .tech-category h3 {
+            color: #34d399;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .tech-list {
+            list-style: none;
+        }
+
+        .tech-list li {
+            padding: 0.3rem 0;
+            opacity: 0.8;
+        }
+
+        .tech-list li::before {
+            content: '▸';
+            color: #34d399;
+            margin-right: 0.5rem;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(249, 250, 251, 0.03);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid rgba(249, 250, 251, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(249, 250, 251, 0.06);
+            border-color: rgba(52, 211, 153, 0.3);
+        }
+
+        .feature-card h3 {
+            color: #34d399;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Development Process */
+        .process-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #34d399, #059669);
+        }
+
+        .process-step {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+        }
+
+        .process-step::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: #34d399;
+            border-radius: 50%;
+            transform: translateX(-5px);
+        }
+
+        .process-step h3 {
+            color: #34d399;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .process-step h4 {
+            color: #f9fafb;
+            font-size: 1.1rem;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        /* Gallery Placeholder */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-item {
+            background: rgba(249, 250, 251, 0.03);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 2px dashed rgba(52, 211, 153, 0.3);
+            text-align: center;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            border-color: #34d399;
+            background: rgba(52, 211, 153, 0.05);
+        }
+
+        .gallery-item h4 {
+            color: #34d399;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-item p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* UI Comparison */
+        .ui-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .ui-option {
+            background: rgba(249, 250, 251, 0.03);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid rgba(249, 250, 251, 0.08);
+        }
+
+        .ui-option h3 {
+            color: #34d399;
+            margin-bottom: 1rem;
+        }
+
+        .pros-cons {
+            margin-top: 1rem;
+        }
+
+        .pros-cons h4 {
+            color: #84cc16;
+            font-size: 1rem;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        .pros-cons.cons h4 {
+            color: #f97316;
+        }
+
+        .pros-cons ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        .pros-cons li::before {
+            content: '✓';
+            color: #84cc16;
+            margin-right: 0.5rem;
+        }
+
+        .pros-cons.cons li::before {
+            content: '⚠';
+            color: #f97316;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .project-title {
+                font-size: 2rem;
+            }
+
+            .ui-comparison {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1 class="project-title">Interactive 3D Environment</h1>
+            <p class="project-subtitle">Cinematic Experience with Character Animation</p>
+            <p class="project-description">
+                A comprehensive 3D project demonstrating cinematic camera movement, character animation, 
+                and scene transitions. Built using Godot engine with custom assets created in MagicaVoxel 
+                and Blender, featuring a complete narrative experience across multiple environments.
+            </p>
+            <a href="/index.html" class="back-link">← Back to Portfolio</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Technical Overview -->
+        <section class="section">
+            <h2 class="section-title">Technical Overview</h2>
+            <div class="tech-overview">
+                <div class="tech-category">
+                    <h3>Game Engine</h3>
+                    <ul class="tech-list">
+                        <li>Godot Engine</li>
+                        <li>GDScript Programming</li>
+                        <li>3D Scene Management</li>
+                        <li>Animation System</li>
+                    </ul>
+                </div>
+                <div class="tech-category">
+                    <h3>3D Modeling</h3>
+                    <ul class="tech-list">
+                        <li>MagicaVoxel (Base Models)</li>
+                        <li>Blender (Advanced Modeling)</li>
+                        <li>Character Rigging</li>
+                        <li>UV Mapping & Texturing</li>
+                    </ul>
+                </div>
+                <div class="tech-category">
+                    <h3>Programming Concepts</h3>
+                    <ul class="tech-list">
+                        <li>Finite State Machine</li>
+                        <li>Multiple Inheritance</li>
+                        <li>Search & Sort Algorithms</li>
+                        <li>Stack Implementation</li>
+                    </ul>
+                </div>
+                <div class="tech-category">
+                    <h3>Animation & UI</h3>
+                    <ul class="tech-list">
+                        <li>Character Walk Cycles</li>
+                        <li>Camera Path Following</li>
+                        <li>Scene Transitions</li>
+                        <li>Custom UI Components</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Features -->
+        <section class="section">
+            <h2 class="section-title">Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Cinematic Camera System</h3>
+                    <p>Smooth camera movements using Path3D and PathFollow3D nodes, creating immersive cinematic experiences with proper camera orientation and smooth transitions between scenes.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Character Animation</h3>
+                    <p>Custom rigged character with walk and idle animations. Proper skeleton hierarchy with weight painting for smooth deformation and seamless animation transitions.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Multi-Scene Experience</h3>
+                    <p>Complete narrative journey through palace interior, village exterior, and character-focused environments with cohesive visual storytelling.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Advanced Programming</h3>
+                    <p>Implementation of computer science fundamentals including finite state machines, inheritance patterns, and algorithm implementation for position tracking.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Custom Asset Pipeline</h3>
+                    <p>Efficient workflow from MagicaVoxel concept to Blender refinement to Godot implementation, ensuring optimized performance and visual consistency.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Interactive UI System</h3>
+                    <p>Custom UI components with fade effects, narrative scene cards, and smooth transitions that enhance the storytelling experience.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Development Process -->
+        <section class="section">
+            <h2 class="section-title">Development Process</h2>
+            <div class="process-timeline">
+                <div class="process-step">
+                    <h3>Pre-Production & Planning</h3>
+                    <p>Comprehensive research into cinematic techniques, character animation flow, and narrative design. Created detailed wireframes, UML diagrams, and state diagrams to plan the technical architecture.</p>
+                    <h4>Deliverables:</h4>
+                    <p>• Wireframe sketches for all scenes<br>• UML class diagrams showing inheritance structure<br>• Use case and sequence diagrams<br>• State diagrams for scene transitions</p>
+                </div>
+
+                <div class="process-step">
+                    <h3>Asset Creation</h3>
+                    <h4>MagicaVoxel Modeling</h4>
+                    <p>Created base architectural elements for palace and village environments with consistent visual style and limited color palette for cohesive aesthetics.</p>
+                    
+                    <h4>Blender Refinement</h4>
+                    <p>Enhanced models with detailed texturing, UV mapping, and optimized topology. Created the main character with proper edge flow for animation.</p>
+                </div>
+
+                <div class="process-step">
+                    <h3>Character Rigging & Animation</h3>
+                    <h4>Skeleton Setup</h4>
+                    <p>Designed efficient bone hierarchy with proper constraints and limits for realistic character movement.</p>
+                    
+                    <h4>Weight Painting & Skinning</h4>
+                    <p>Applied armature with automatic weights, then manually refined weight painting for smooth joint deformation.</p>
+                    
+                    <h4>Animation Creation</h4>
+                    <p>Developed walk cycle and idle animations with smooth transitions, exported as separate actions for Godot implementation.</p>
+                </div>
+
+                <div class="process-step">
+                    <h3>Godot Implementation</h3>
+                    <h4>Scene Construction</h4>
+                    <p>Built three main environments (palace_interior, village_exterior, char_outside) with proper lighting and asset organization.</p>
+                    
+                    <h4>Programming Systems</h4>
+                    <p>Implemented camera controllers, animation state machines, scene transition systems, and UI components using object-oriented programming principles.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- UI Design Comparison -->
+        <section class="section">
+            <h2 class="section-title">UI Design Approaches</h2>
+            <p>Two distinct UI approaches were developed and tested to optimize user experience:</p>
+            
+            <div class="ui-comparison">
+                <div class="ui-option">
+                    <h3>Minimal Interface Design</h3>
+                    <p>Focused on uninterrupted environmental immersion with simple fade transitions and no overlay elements during exploration.</p>
+                    
+                    <div class="pros-cons">
+                        <h4>Advantages:</h4>
+                        <ul>
+                            <li>Uninterrupted immersion</li>
+                            <li>Clean, distraction-free visuals</li>
+                            <li>Focus on environmental storytelling</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pros-cons cons">
+                        <h4>Considerations:</h4>
+                        <ul>
+                            <li>Less context for transitions</li>
+                            <li>Reduced narrative guidance</li>
+                            <li>Fewer storytelling opportunities</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="ui-option">
+                    <h3>Narrative Scene Cards</h3>
+                    <p>Incorporated stylized transition cards with titles, descriptions, and decorative elements to enhance storytelling.</p>
+                    
+                    <div class="pros-cons">
+                        <h4>Advantages:</h4>
+                        <ul>
+                            <li>Enhanced storytelling capability</li>
+                            <li>Clear scene transitions</li>
+                            <li>Professional presentation</li>
+                            <li>Additional narrative context</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pros-cons cons">
+                        <h4>Considerations:</h4>
+                        <ul>
+                            <li>Interrupts visual flow</li>
+                            <li>Requires processing time</li>
+                            <li>More complex implementation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="section">
+            <h2 class="section-title">Project Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/palace-interior.png" alt="Scene" style="width: 100%; border-radius: 10px;">
+                   
+                </div>
+                <div class="gallery-item">
+                    <img src="images/character-rigging.png" alt="Scene" style="width: 100%; border-radius: 8px;">
+                    
+                </div>
+                <div class="gallery-item">
+                    <img src="images/village-exterior.png" alt="Scene" style="width: 100%; border-radius: 8px;">
+                   
+                </div>
+                <div class="gallery-item">
+                    <img src="images/palace-exterior.png" alt="Scene" style="width: 100%; border-radius: 8px;">
+                    </p>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/buildings.png" alt="Scene" style="width: 100%; border-radius: 8px;">
+                    
+                </div>
+                <div class="gallery-item">
+                    <img src="images/character-inside.png" alt="Scene" style="width: 100%; border-radius: 8px;">
+                    
+                </div>
+            </div>
+            
+        </section>
+
+        <!-- Technical Achievements -->
+        <section class="section">
+            <h2 class="section-title">Technical Achievements</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>✓ Complete Simulation Cycle</h3>
+                    <p>Implemented full start → main → end screen workflow with proper state management</p>
+                </div>
+                <div class="feature-card">
+                    <h3>✓ Finite State Machine</h3>
+                    <p>Robust scene transition system with state tracking and validation</p>
+                </div>
+                <div class="feature-card">
+                    <h3>✓ Algorithm Implementation</h3>
+                    <p>Search and sort algorithms for position tracking and UI transformations</p>
+                </div>
+                <div class="feature-card">
+                    <h3>✓ Object-Oriented Design</h3>
+                    <p>Multiple class inheritance with proper encapsulation and code reusability</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Add fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.1s';
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections for animation
+        document.querySelectorAll('.section, .feature-card, .tech-category').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
