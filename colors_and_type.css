@@ -1,0 +1,216 @@
+/* ==========================================================================
+   Shefreen Kaur · Design System
+   Colors & Type tokens
+   --------------------------------------------------------------------------
+   The portfolio sits at the intersection of two worlds Shefreen lives in:
+   - Data analysis: precise, monospaced, structured, navy + amber.
+   - Whimsy / fantasy writing + 3D worlds: serif italics, soft glow,
+     a warm "lit window in the dark" feel.
+
+   Two palettes are exposed:
+   - "Analyst Navy" (default) — used on the portfolio index.
+   - "Voxel Sage" (accent surface) — used on the 3D project page.
+   --------------------------------------------------------------------------
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+  /* ----------------------------------------------------------------------
+     PRIMARY PALETTE — "Analyst Navy" (with gold + green whimsy + ember red)
+     Deep navy stays as the base — it's the late-night-dashboard calm.
+     Gold is the lit-window glow (links, italics, primary CTA).
+     Forest green is the whimsy slot — moss, a Godot-scene leaf — used on
+     accent ornaments, secondary tags, the hover strip on a "fun" card.
+     Ember red is RARE — reserved for one highlight per page (a stat
+     callout, a "now hiring me" pulse). Treat it like saffron: pinch, not
+     handful.
+     ---------------------------------------------------------------------- */
+  --navy:        #0d1b2a;  /* page background — deepest */
+  --navy-2:      #162033;  /* card surface */
+  --navy-3:      #1e2d40;  /* nested chip / inset surface */
+  --navy-4:      #2a3a4d;  /* divider, hairline border */
+
+  --gold:        #e8b04b;  /* primary accent — was --amber */
+  --gold-2:      #ffd071;  /* hover / brighter */
+  --gold-soft:   rgba(232, 176, 75, 0.08);
+  --gold-line:   rgba(232, 176, 75, 0.30);
+
+  --moss:        #6fae6a;  /* secondary accent — forest/sage green */
+  --moss-2:      #8cc684;  /* hover */
+  --moss-soft:   rgba(111, 174, 106, 0.10);
+  --moss-line:   rgba(111, 174, 106, 0.32);
+
+  --ember:       #c8553d;  /* rare accent — one use per page */
+  --ember-2:     #e2715a;
+  --ember-soft:  rgba(200, 85, 61, 0.10);
+  --ember-line:  rgba(200, 85, 61, 0.30);
+
+  /* Backwards-compat aliases — older preview cards still reference --amber */
+  --amber:       var(--gold);
+  --amber-2:     var(--gold-2);
+  --amber-soft:  var(--gold-soft);
+  --amber-line:  var(--gold-line);
+
+  /* ----------------------------------------------------------------------
+     SECONDARY PALETTE — "Voxel Sage" (3D project page)
+     Cinematic, mossy, the green glow of a Godot scene. Used sparingly.
+     ---------------------------------------------------------------------- */
+  --slate:       #1f2937;  /* alt page background */
+  --slate-2:     #374151;  /* gradient end */
+  --sage:        #34d399;  /* alt accent */
+  --sage-deep:   #059669;  /* gradient end for sage */
+  --sage-soft:   rgba(52, 211, 153, 0.10);
+  --sage-line:   rgba(52, 211, 153, 0.30);
+
+  /* ----------------------------------------------------------------------
+     SEMANTIC FOREGROUNDS
+     ---------------------------------------------------------------------- */
+  --fg-1:        #e8edf2;  /* primary text on navy */
+  --fg-2:        #f9fafb;  /* primary text on slate (slightly cooler) */
+  --fg-muted:    #8a9ab0;  /* body copy, dates, secondary */
+  --fg-faint:    #2a3a4d;  /* numerals like "01", quiet ornaments */
+
+  /* ----------------------------------------------------------------------
+     SUPPORTING COLORS — used in the 3D project's pros/cons & accents
+     ---------------------------------------------------------------------- */
+  --lime:        #84cc16;  /* "advantages" tick */
+  --orange:      #f97316;  /* "considerations" warn */
+
+  /* ----------------------------------------------------------------------
+     TYPOGRAPHY
+     - DM Serif Display: name, project titles, big "let's work together".
+       Italic variant carries the whimsy — used on the second word
+       ("Kaur", "together", "Together").
+     - Outfit: body sans, UI text, role lines. Light → semibold.
+     - DM Mono: tags, dates, repo links, section labels. Tracking +0.06–0.10em.
+     ---------------------------------------------------------------------- */
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body:    'Outfit', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:    'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Type scale — fluid-friendly, used as named roles */
+  --t-display:    56px;   /* hero name */
+  --t-h1:         38px;   /* mobile hero */
+  --t-h2:         28px;   /* contact bar headline */
+  --t-h3:         22px;   /* project title */
+  --t-h4:         17px;   /* role title */
+  --t-body:       16px;   /* default body */
+  --t-sm:         13px;   /* card body, descriptions */
+  --t-xs:         12px;   /* link copy, dates */
+  --t-mono:       11px;   /* tags, labels — uppercased */
+  --t-mono-tiny:  10px;   /* type chips, ULTRA quiet */
+
+  /* Letter-spacing presets */
+  --track-loose:  0.10em; /* SECTION LABELS */
+  --track-mid:    0.08em; /* mono link copy */
+  --track-tight:  0.06em; /* skill group titles */
+
+  /* Line heights */
+  --lh-tight:     1.05;   /* display name */
+  --lh-snug:      1.20;   /* h3 */
+  --lh-body:      1.70;   /* paragraph body */
+
+  /* ----------------------------------------------------------------------
+     RADII, SHADOWS, MOTION
+     The system is intentionally low on roundness — 2px on chips/buttons,
+     4px on cards. No big pillowy radii. Borders > shadows.
+     ---------------------------------------------------------------------- */
+  --r-sharp:     2px;     /* chips, buttons, mono tags */
+  --r-card:      4px;     /* project & skill cards */
+  --r-pill:      25px;    /* 3D-project back button only */
+  --r-soft:      12px;    /* tech category, feature card on slate page */
+
+  --shadow-lift: 0 1px 0 rgba(255,255,255,0.02) inset;
+  --shadow-card: 0 0 0 1px var(--navy-4);
+  --shadow-glow: 0 0 0 1px var(--amber-line);
+
+  /* Hover translation — projects lift 2px */
+  --lift:        translateY(-2px);
+  --lift-strong: translateY(-5px);  /* feature cards on slate page */
+
+  /* Motion */
+  --ease:        cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast:    0.20s;
+  --dur-mid:     0.25s;
+  --dur-slow:    0.30s;
+
+  /* ----------------------------------------------------------------------
+     SPACING — 8pt-ish, with a 4 step for tight chip padding
+     ---------------------------------------------------------------------- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-7: 32px;
+  --s-8: 40px;
+  --s-9: 48px;
+  --s-10: 64px;
+  --s-11: 80px;
+}
+
+/* =========================================================================
+   SEMANTIC ROLES — drop-in classes that match the portfolio's existing usage
+   ========================================================================= */
+
+.ds-hero-name {
+  font-family: var(--font-display);
+  font-size: var(--t-display);
+  line-height: var(--lh-tight);
+  color: var(--fg-1);
+}
+.ds-hero-name em {
+  font-style: italic;
+  color: var(--amber);
+}
+
+.ds-h3 {
+  font-family: var(--font-display);
+  font-size: var(--t-h3);
+  line-height: var(--lh-snug);
+  color: var(--fg-1);
+}
+
+.ds-body {
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  color: var(--fg-1);
+  font-weight: 300;
+}
+
+.ds-body-sm {
+  font-family: var(--font-body);
+  font-size: var(--t-sm);
+  line-height: var(--lh-body);
+  color: var(--fg-muted);
+}
+
+.ds-mono-label {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  letter-spacing: var(--track-loose);
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+.ds-mono-tag {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  color: var(--amber);
+  border: 1px solid var(--amber-line);
+  padding: 4px 12px;
+  border-radius: var(--r-sharp);
+  letter-spacing: var(--track-mid);
+}
+
+.ds-mono-chip {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--fg-muted);
+  background: var(--navy-3);
+  padding: 4px 10px;
+  border-radius: var(--r-sharp);
+}

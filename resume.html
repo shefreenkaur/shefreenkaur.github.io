@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Shefreen Kaur · Resume</title>
+<link rel="stylesheet" href="colors_and_type.css?v=2">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+
+  /* Screen — viewer-friendly preview, dark like the portfolio */
+  body{background:var(--navy);color:var(--fg-1);font-family:var(--font-body);min-height:100vh;
+    padding:48px 24px;display:flex;flex-direction:column;align-items:center;gap:24px}
+
+  .toolbar{display:flex;gap:10px;align-items:center;font-family:var(--font-mono);font-size:11px;
+    color:var(--fg-muted);letter-spacing:.06em}
+  .toolbar button{background:var(--gold);color:var(--navy);border:0;font-family:var(--font-mono);
+    font-size:11px;padding:8px 16px;border-radius:var(--r-sharp);cursor:pointer;font-weight:500;
+    letter-spacing:.06em}
+  .toolbar button:hover{background:var(--gold-2)}
+
+  /* The page itself — designed at US Letter, 8.5×11in. Visible against navy bg. */
+  .page{
+    background:#fdfcf9;color:#1a1a1a;
+    width:8.5in;min-height:11in;padding:0.55in 0.6in;
+    box-shadow:0 30px 80px rgba(0,0,0,.5);
+    font-family:var(--font-body);font-size:10.5pt;line-height:1.45;
+    position:relative;
+  }
+
+  /* HEADER */
+  .head{border-bottom:1.5pt solid #0d1b2a;padding-bottom:14pt;margin-bottom:18pt;
+    display:flex;align-items:flex-end;justify-content:space-between;gap:24pt}
+  .head h1{font-family:var(--font-display);font-size:30pt;line-height:1;color:#0d1b2a;
+    letter-spacing:-0.01em;font-weight:600}
+  .head h1 em{color:#b8851f;font-style:italic}
+  .head .role{font-family:var(--font-mono);font-size:9pt;color:#6b6b6b;
+    letter-spacing:.12em;text-transform:uppercase;margin-top:6pt}
+  .head .contact{font-family:var(--font-mono);font-size:8.5pt;color:#1a1a1a;
+    text-align:right;line-height:1.7;letter-spacing:.02em}
+  .head .contact a{color:#1a1a1a;text-decoration:none;border-bottom:0.5pt dotted #999}
+  .head .contact a:hover{color:#b8851f;border-color:#b8851f}
+  .head .contact .gold{color:#b8851f}
+
+  /* SUMMARY */
+  .summary{font-size:10.5pt;line-height:1.55;color:#1a1a1a;margin-bottom:16pt;
+    padding-bottom:14pt;border-bottom:0.5pt solid #d8d2c5;max-width:none}
+  .summary em{font-family:var(--font-display);font-style:italic;color:#b8851f;font-size:11pt}
+
+  /* SECTION */
+  .section{margin-bottom:14pt}
+  .section h2{font-family:var(--font-mono);font-size:9pt;color:#b8851f;
+    letter-spacing:.18em;text-transform:uppercase;margin-bottom:10pt;
+    border-bottom:0.5pt solid #d8d2c5;padding-bottom:4pt;font-weight:500}
+
+  /* ENTRY (job, project, school) */
+  .entry{margin-bottom:11pt}
+  .entry:last-child{margin-bottom:0}
+  .entry-head{display:flex;justify-content:space-between;align-items:baseline;gap:12pt;margin-bottom:2pt}
+  .entry-title{font-size:11pt;color:#0d1b2a;font-weight:600}
+  .entry-title .at{font-weight:400;color:#444}
+  .entry-meta{font-family:var(--font-mono);font-size:8.5pt;color:#6b6b6b;
+    letter-spacing:.04em;white-space:nowrap}
+  .entry-sub{font-size:9.5pt;color:#5a6b3e;margin-bottom:5pt;font-style:italic;font-family:var(--font-display)}
+  .entry ul{list-style:none;padding-left:0}
+  .entry li{font-size:10pt;line-height:1.5;color:#1a1a1a;padding-left:12pt;position:relative;margin-bottom:3pt}
+  .entry li::before{content:'';position:absolute;left:0;top:8pt;width:6pt;height:0.6pt;background:#b8851f}
+  .entry li b{color:#0d1b2a;font-weight:600}
+  .entry li .num{color:#b8851f;font-weight:600;font-family:var(--font-display);font-style:italic}
+
+  /* TWO-COLUMN for projects to keep one page */
+  .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:14pt 22pt}
+  .proj-grid .entry{margin-bottom:8pt}
+  .proj-grid .entry li{font-size:9pt;line-height:1.45}
+  .proj-grid .entry-title{font-size:10pt}
+  .proj-grid .entry-meta{font-size:8pt}
+
+  /* SKILLS */
+  .skills{display:grid;grid-template-columns:130pt 1fr;gap:6pt 14pt;font-size:9.5pt}
+  .skills .label{font-family:var(--font-mono);font-size:8.5pt;color:#6b6b6b;
+    letter-spacing:.06em;text-transform:uppercase;padding-top:1pt}
+  .skills .vals{color:#1a1a1a}
+  .skills .vals b{color:#0d1b2a;font-weight:600}
+
+  /* EDUCATION + CERT row */
+  .ed-row{display:grid;grid-template-columns:1fr 1fr;gap:24pt}
+
+  /* Print — hide chrome, white bg, exact size */
+  @media print {
+    @page { size: letter; margin: 0; }
+    body { background:#fff;padding:0;display:block }
+    .toolbar { display:none }
+    .page { box-shadow:none;width:8.5in;min-height:11in;margin:0 }
+  }
+
+  @media (max-width:900px){
+    body{padding:16px 8px}
+    .page{width:100%;padding:24px 18px;font-size:11pt}
+    .head{flex-direction:column;align-items:flex-start;gap:10pt}
+    .head .contact{text-align:left}
+    .proj-grid{grid-template-columns:1fr}
+    .skills{grid-template-columns:1fr}
+    .ed-row{grid-template-columns:1fr;gap:14pt}
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button onclick="window.print()">PRINT / SAVE AS PDF</button>
+  <span>· Cmd/Ctrl + P also works</span>
+</div>
+
+<div class="page" data-screen-label="01 Resume">
+
+  <header class="head">
+    <div>
+      <h1>Shefreen <em>Kaur</em></h1>
+      <div class="role">Data Analyst · SQL · Python · Power BI</div>
+    </div>
+    <div class="contact">
+      <div><a href="mailto:shefreenkaur@gmail.com" class="gold">shefreenkaur@gmail.com</a></div>
+      <div>+1 604 791 6946</div>
+      <div><a href="https://github.com/shefreenkaur" target="_blank" rel="noreferrer">github.com/shefreenkaur</a></div>
+      <div><a href="https://linkedin.com/in/shefreenkaur" target="_blank" rel="noreferrer">linkedin.com/in/shefreenkaur</a></div>
+    </div>
+  </header>
+
+  <p class="summary">
+    Data analyst happiest in the numbers — <em>SQL, Python, dashboards that change a decision</em>. BSc Computer Information Systems, Dean's List 2025. Looking for my first full-time analyst role; open to relocation.
+  </p>
+
+  <section class="section">
+    <h2>Experience</h2>
+    <div class="entry">
+      <div class="entry-head">
+        <div class="entry-title">Visual Manager &amp; Supervisor <span class="at">· H&amp;M</span></div>
+        <div class="entry-meta">Aug 2025 – Mar 2026</div>
+      </div>
+      <ul>
+        <li>Grew department contribution to total store sales from <span class="num">9% to 16%</span> over 3 months through data-driven adjustments to product placement, inventory allocation, and replenishment workflows.</li>
+        <li>Tracked weekly sales and inventory data across product categories using <b>Excel</b>, monitoring transaction volumes, performance metrics, and identifying trends and anomalies to support operational decisions.</li>
+        <li>Managed scheduling data for a team of 50+, using traffic pattern analysis to optimize labor allocation and reduce operational overhead.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Projects</h2>
+    <div class="proj-grid">
+
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-title">Retail Inventory Overstock Analysis</div>
+        </div>
+        <div class="entry-sub">BigQuery · SQL · Tableau</div>
+        <ul>
+          <li>Designed a three-table data model (WMS, POS, Product Master joined on SKU) to investigate inventory overstock patterns across a pre-holiday window.</li>
+          <li>Performed sell-through rate analysis and YoY comparisons to distinguish volume vs. velocity problems at the SKU and category level.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-title">BI Trading Analytics Platform</div>
+        </div>
+        <div class="entry-sub">Python · FastAPI · Streamlit · Plotly · Docker</div>
+        <ul>
+          <li>Built full-stack analytics app for multi-asset trading data; daily reports on pricing performance, volumes, and execution quality.</li>
+          <li>Designed star schema warehouse with automated ETL pipelines; integrated Yahoo Finance API for live market data ingestion.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-title">FalkorDB Knowledge Graph</div>
+        </div>
+        <div class="entry-sub">Python · FalkorDB · Docker · Cypher</div>
+        <ul>
+          <li>Deployed graph database environment using Docker-Redis with FalkorDB for knowledge relationship mapping.</li>
+          <li>Created university data model using Cypher based on UML class diagram specifications; automated build and validation.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-title">Knowledge Synthesis Plugin for Obsidian</div>
+        </div>
+        <div class="entry-sub">TypeScript · NLP · Obsidian API</div>
+        <ul>
+          <li>NLP-powered plugin for automatic concept extraction and semantic relationship discovery across documents.</li>
+          <li>Interactive knowledge graph visualization with concept tagging and summary generation.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Technical Skills</h2>
+    <div class="skills">
+      <div class="label">Data Analysis</div>
+      <div class="vals"><b>SQL</b>, Python (Pandas, NumPy), Excel (PivotTables, Power Query M, VBA)</div>
+      <div class="label">Visualization</div>
+      <div class="vals"><b>Power BI</b>, Tableau, Streamlit, PowerPoint</div>
+      <div class="label">Process &amp; Operations</div>
+      <div class="vals">ETL and data cleaning, KPI tracking, process documentation, workflow analysis, cross-functional reporting</div>
+    </div>
+  </section>
+
+  <div class="ed-row">
+    <section class="section">
+      <h2>Education</h2>
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-title">BSc Computer Information Systems</div>
+          <div class="entry-meta">2021 – 2025</div>
+        </div>
+        <div class="entry-sub">University of the Fraser Valley · Abbotsford, BC</div>
+        <ul>
+          <li>GPA 3.24 · <b>Dean's List GPA 4.0 (2025)</b></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Certifications</h2>
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-title">Google Data Analytics Certificate</div>
+          <div class="entry-meta">In progress · 2026</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</div>
+
+</body>
+</html>
