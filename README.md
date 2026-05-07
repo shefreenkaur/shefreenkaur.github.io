@@ -1,41 +1,39 @@
-# Shefreen Kaur — Portfolio
+# Basics & Fashion — Overstock Analysis
 
-Data analyst portfolio. Built with vanilla HTML/CSS and React (via CDN).
+**Case Study 01 · Retail Analytics**
+Live at: `shefreenkaur.github.io/basics-and-fashion/basics-and-fashion.html`
 
-## Deploying to GitHub Pages
+---
 
-### Option A: New repo (recommended)
-1. Create a new public GitHub repo — name it `shefreenkaur.github.io` if you want the clean URL, or anything else (e.g. `portfolio`) for a `/portfolio` subdomain URL.
-2. Upload all files from this folder, keeping the folder structure intact:
-   ```
-   index.html
-   3dproject.html
-   resume.html
-   colors_and_type.css
-   assets/
-     portfolio-3d/
-       buildings.png
-       character-inside.png
-       character-rigging.png
-       palace-exterior.png
-       palace-interior.png
-       village-exterior.png
-   ```
-3. Go to **Settings → Pages → Source** and set it to `Deploy from a branch` → `main` → `/ (root)`.
-4. GitHub will give you a URL like `https://shefreenkaur.github.io` or `https://shefreenkaur.github.io/portfolio` within a minute or two.
+## What this is
 
-### Option B: Existing repo
-Same as above, but push to whatever branch your Pages is configured to deploy from.
+A self-initiated retail analytics case study framed as an area-level data analyst identifying an overstock problem across multiple stores during the September to November pre-holiday window, across two consecutive years (2024 and 2025).
 
 ## Files
 
-| File | Purpose |
-|------|---------|
-| `index.html` | Main portfolio page |
-| `3dproject.html` | 3D Village Animation case study |
-| `resume.html` | One-page resume (print to PDF from here) |
-| `colors_and_type.css` | Design system tokens (fonts, colors, spacing) |
-| `assets/portfolio-3d/` | 3D project images |
+| File | Description |
+|------|-------------|
+| `basics-and-fashion.html` | Main case study page — hero, charts, findings |
+| `behind-the-analysis.html` | Working file — data model, SQL pipeline, analytical decisions |
 
-## Saving the resume as PDF
-Open `resume.html` on GitHub Pages and click the **PRINT / SAVE AS PDF** button (or Cmd/Ctrl+P), then choose "Save as PDF" as the destination. The print button hides itself in the output.
+## Stack
+
+- **BigQuery + SQL** — three-table data model, six queries, final `overstock_analysis` table
+- **Chart.js** — sell-through rate, volume comparison, net stock movement
+- **HTML / CSS / JS** — no frameworks, no dependencies beyond Chart.js and Google Fonts
+
+## Key finding
+
+Womenswear Fashion averaged 29% sell-through across all six data points (Sep, Oct, Nov in both years), against a 70% healthy threshold. The same pattern repeating in consecutive years without correction points to a structural buying and forecasting problem, not a seasonal anomaly.
+
+## To deploy
+
+Drop both HTML files into a subfolder of your GitHub Pages repository and push. No build step required.
+
+```
+shefreenkaur.github.io/
+  basics-and-fashion/
+    basics-and-fashion.html
+    behind-the-analysis.html
+    README.md
+```
